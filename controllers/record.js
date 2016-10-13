@@ -2,6 +2,14 @@ mainApp.controller("recordController",['$scope','recordService', function ($scop
 
 	var onFail = function(e) {
 		console.log('Rejected!', e);
+		console.log(e.name);
+		if(e.name == 'MediaDeviceNotSupported'){
+			console.log('ntsupported');
+			//$scope.startRecording();
+		}
+		//console.log(e.NavigatorUserMediaError.name);
+		//console.log('Rejected!', e);
+		//$scope.startRecording;
 	};
 
 	var onSuccess = function(s) {
@@ -36,6 +44,15 @@ mainApp.controller("recordController",['$scope','recordService', function ($scop
 					console.log($scope.blob);
 					
 				});
+			}
+			$scope.init = function(){
+				$scope.startRecording();
+				setTimeout(function(){ 
+					console.log('called')
+					recorder.stop(); }, 700);
+			
+
+				//$scope.stopRecording();
 			}
 			$scope.save =  function () {
 			$scope.fileName;
